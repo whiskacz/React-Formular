@@ -7,48 +7,41 @@ class Formular extends React.Component{
 
     }
 
-    handleCity =(e) => {
-        this.setState({
-            city : e.target.value
+    handleChange =(e) => {
+        
+            if(e.target.type === "checkbox"){
+                this.setState({
+                [e.target.name] : e.target.checked
+                })
+            }
+            else{
+            this.setState({
+            [e.target.name] : e.target.value
         })
-    }
-    handleText(e){
-        this.setState({
-            text: e.target.value
-        })
-    }
-    handleCheckBox= (e) =>{
-        this.setState({
-            check: e.target.checked
-        })
-    }
-    handleOptions = (e) => {
-        this.setState({
-            option: e.target.value
-        })
-    }
-
+            }
+   
+        }
     render(){
         return(
             <div>
             <label>
                 Podaj miasto
-                <input type="text" value={this.state.city} onChange={this.handleCity} />
+                <input name="city" type="text" value={this.state.city} onChange={this.handleChange} />
             </label>
             <br />
             <label>
                 Napisz coś o mieście
-                <textarea value={this.state.text} onChange={this.handleText.bind(this)}></textarea>
+                <textarea name="text" value={this.state.text} onChange={this.handleChange.bind(this)}></textarea>
             </label>
             <br />
             <label>
                 Czy lubisz to miasto?
-                <input type="checkbox" onChange={this.handleCheckBox} checked={this.state.check}/>
+                <input name="check" type="checkbox" onChange={this.handleChange} checked={this.state.check}/>
             </label>
             <br />
             <label>
                 Ile razy byłeś w tym mieście?
-                <select value={this.state.option} onChange={this.handleOptions}>
+                <select name="option" value={this.state.option} onChange={this.handleChange}>
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
